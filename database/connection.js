@@ -14,6 +14,8 @@ let client = null;
 let db = null;
 let _productCol = null;
 let _blogCol = null;
+let _accountCol = null;
+let _orderCol = null;
 
 async function connection(cb) {
   if (db) {
@@ -28,6 +30,8 @@ async function connection(cb) {
     marketWarehouse = db.collection('market_warehouses');
     _productCol = db.collection('products');
     _blogCol = db.collection('blogs');
+    _accountCol = db.collection('accounts');
+    _orderCol = db.collection('orders');
     await marketWarehouse.createIndex({
       created_at: 1,
       updated_at: 1,
@@ -43,9 +47,13 @@ async function connection(cb) {
 
 const productCol = () => _productCol;
 const blogCol = () => _blogCol;
+const accountCol = () => _accountCol;
+const orderCol = () => _orderCol;
 
 module.exports = {
   connection,
   productCol,
   blogCol,
+  accountCol,
+  orderCol
 };
