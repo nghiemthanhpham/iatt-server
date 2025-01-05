@@ -1,4 +1,5 @@
 const { accountModel } = require('~/model');
+const { ObjectId } = require("mongodb");
 
 async function getAllAccounts() {
   return accountModel.find({});
@@ -13,7 +14,9 @@ async function getAccountById(id) {
 }
 
 async function updateProfileById(id, data) {
-  return accountModel.updateOne({ _id: id }, data);
+  console.log(id);
+  console.log(data);
+  return accountModel.updateOne({ _id: new ObjectId(id) }, data);
 }
 
 async function createAccount(data) {

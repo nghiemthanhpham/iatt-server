@@ -13,7 +13,8 @@ async function updateAccount(request, reply) {
   try {
     const body = request.body
     const id = request.params.id;
-    await accountService.updateProfileById(id, body)
+    const status = await accountService.updateProfileById(id, body)
+    console.log(status);
     return reply.status(200).send({ message: 'Successfully' });
   } catch (err) {
     return reply.status(500).send({ message: 'Internal Server Error' });
